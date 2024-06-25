@@ -27,12 +27,12 @@ namespace AD
         return y;
     }
 
-    template<typename T, typename= enable_if_arithmetic_t<T>>
-    inline CAdjoint operator+(T x1, const CAdjoint& x2){
+    template <typename T, typename = enable_if_arithmetic_t<T>>
+    inline CAdjoint operator+(T x1, const CAdjoint &x2)
+    {
         CAdjoint y(x1 + x2.val());
-        CTape::stack.emplace_back([=](std::vector<Real> &grad){
-            grad[x2.idx()] += grad[y.idx()];
-        });
+        CTape::stack.emplace_back([=](std::vector<Real> &grad)
+                                  { grad[x2.idx()] += grad[y.idx()]; });
         return y;
     }
 }

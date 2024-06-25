@@ -17,8 +17,6 @@ namespace AD
 {
 
     /// @brief 用于伴随的节点变量类型
-    /// @tparam T 数据类型
-    /// @tparam  检验T是否是算数类型
     class CAdjoint
     {
     private:
