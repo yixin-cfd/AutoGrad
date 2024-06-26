@@ -4,7 +4,7 @@ project(AutoDiff)
 set(TARGET_NAME AutoDiff)
 
 # 设置默认构建类型和相应的编译器标志  Debug  |  Release
-set(ReleaseMode off)
+set(ReleaseMode on)
 
 if(ReleaseMode)
     set(CMAKE_BUILD_TYPE "Release")
