@@ -13,7 +13,8 @@ namespace AD
         {
             grad[x.idx()] += y.val() * grad[y.idx()];
         };
-        CTape::stack.emplace_back(f);
+        if (CTape::IsRecord())
+            CTape::stack.emplace_back(f);
         return y;
     }
 }

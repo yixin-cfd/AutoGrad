@@ -14,7 +14,8 @@ namespace AD
         {
             grad[x.idx()] += grad[y.idx()] * p * std::pow(x.val(), p - 1.0);
         };
-        CTape::stack.emplace_back(f);
+        if (CTape::IsRecord())
+            CTape::stack.emplace_back(f);
         return y;
     }
 }

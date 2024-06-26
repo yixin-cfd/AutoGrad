@@ -22,15 +22,20 @@ namespace AD
         {
             CIndex::reset();
             stack.clear();
+            record_flag = false;
         } //
+        static bool record_flag;        // 是否开始存储函数
     public:
         static std::vector<std::function<void(std::vector<Real> &)>> stack; // 存储函数
+        static bool IsRecord(void){return record_flag;} // 是否开始存储函数；外部调用
     public:
         void reset()
         {
             reset_();
             dydx.clear();
         }
+
+        void record(bool flag){record_flag = flag;}
 
         void evalute(const CAdjoint &y)
         {

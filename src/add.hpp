@@ -14,7 +14,8 @@ namespace AD
             grad[x1.idx()] += grad[y.idx()];
             grad[x2.idx()] += grad[y.idx()];
         };
-        CTape::stack.emplace_back(f);
+        if (CTape::IsRecord())
+            CTape::stack.emplace_back(f);
         return y;
     }
 
@@ -22,8 +23,9 @@ namespace AD
     inline CAdjoint operator+(const CAdjoint &x1, T x2)
     {
         CAdjoint y(x1.val() + x2);
-        CTape::stack.emplace_back([=](std::vector<Real> &grad)
-                                  { grad[x1.idx()] += grad[y.idx()]; });
+        if (CTape::IsRecord())
+            CTape::stack.emplace_back([=](std::vector<Real> &grad)
+                                      { grad[x1.idx()] += grad[y.idx()]; });
         return y;
     }
 
@@ -31,8 +33,9 @@ namespace AD
     inline CAdjoint operator+(T x1, const CAdjoint &x2)
     {
         CAdjoint y(x1 + x2.val());
-        CTape::stack.emplace_back([=](std::vector<Real> &grad)
-                                  { grad[x2.idx()] += grad[y.idx()]; });
+        if (CTape::IsRecord())
+            CTape::stack.emplace_back([=](std::vector<Real> &grad)
+                                      { grad[x2.idx()] += grad[y.idx()]; });
         return y;
     }
 }

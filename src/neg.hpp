@@ -4,13 +4,17 @@
 #include "common.hpp"
 #include "CTape.hpp"
 
-namespace AD{
-    inline CAdjoint operator-(const CAdjoint& x){
+namespace AD
+{
+    inline CAdjoint operator-(const CAdjoint &x)
+    {
         CAdjoint y(-x.val());
-        auto f=[=](std::vector<Real>& grad){
+        auto f = [=](std::vector<Real> &grad)
+        {
             grad[x.idx()] -= grad[y.idx()];
         };
-        CTape::stack.emplace_back(f);
+        if (CTape::IsRecord())
+            CTape::stack.emplace_back(f);
         return y;
     }
 }

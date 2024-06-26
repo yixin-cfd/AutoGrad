@@ -14,7 +14,8 @@ namespace AD
             grad[x1.idx()] += grad[y.idx()];
             grad[x2.idx()] -= grad[y.idx()];
         };
-        CTape::stack.emplace_back(f);
+        if (CTape::IsRecord())
+            CTape::stack.emplace_back(f);
         return y;
     }
 
@@ -26,7 +27,8 @@ namespace AD
         {
             grad[x1.idx()] += grad[y.idx()];
         };
-        CTape::stack.emplace_back(f);
+        if (CTape::IsRecord())
+            CTape::stack.emplace_back(f);
         return y;
     }
 
@@ -38,7 +40,8 @@ namespace AD
         {
             grad[x2.idx()] -= grad[y.idx()];
         };
-        CTape::stack.emplace_back(f);
+        if (CTape::IsRecord())
+            CTape::stack.emplace_back(f);
         return y;
     }
 }

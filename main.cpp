@@ -9,6 +9,7 @@ void test1()
     /* y = x1*exp(x2) +x3 */
     tape.reset();
     real x1(2), x2(3), x3(4);
+    tape.record(true);
     real y = x1 * exp(x2) + x3;
     tape.evalute(y);
     cout << "x1:" << x1 << endl
@@ -25,6 +26,7 @@ void test2()
     cout << "test2" << endl;
     tape.reset();
     real x1, x2, y;
+    tape.record(true);
     x1.Set(1);
     x2 = x1;
     y = x2 * x2;
@@ -47,6 +49,7 @@ void test3()
     cout << "dy2/dx2=-x1/x2^2 - 2*x2" << endl;
     real x1, x2, y1, y2;
     tape.reset();
+    tape.record(true);
     x1.Set(2);
     x2.Set(3);
     y1 = pow(x1, 2.0) + sqrt(x2);
@@ -94,6 +97,7 @@ void test4()
 {
     cout <<endl<< "test4:" << endl;
     tape.reset();
+    tape.record(true);
     real x1, x2, y1, y2;
     x1 = 1;
     x2 = 2;
